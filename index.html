@@ -1,60 +1,71 @@
-<!--
-  - Full screen clock (24-hour with seconds)
-  - Copyright (c) 2018 Project Nayuki
-  - 
-  - https://www.nayuki.io/page/full-screen-clock-javascript
-  -->
-<!DOCTYPE html>
-<html style="height:100%; margin:0; padding:0">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Clock</title>
-    <style type="text/css">
-      /* Customizable font and colors */
-      html {
-        background: #000000;
-        font-family: sans-serif;
-        font-weight: bold;
-        color: #ffffff;
-      }
-    </style>
-  </head>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<!--<base href="" /><!-- -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<title>jquery.flipCountDown Demo Flip Count Down Retro Clock </title>
+<meta name="description" content="retro flip clock plugin for jQuery.">
+<meta name="keywords" content="Плагин jQuery, retro часы, flip часы,jQuery, plugin, count down">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>-->
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.flipcountdown.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery.flipcountdown.css" />
+<script>
+jQuery(function($){
+	var i = 1000;
+	$('#retroclockbox1').flipcountdown();
+	var i = 1;
+	$('#retroclockbox_counter').flipcountdown({
+		tick:function(){
+			return i++;
+		}
+	});
 
-  <body
-    style="display:flex; height:100%; margin:0; padding:0; justify-content:center; align-items:center"
-  >
-    <span id="clocktext" style="font-kerning:none"></span>
+})
+</script>
+</head>
+<body>
+<div id="main">
+		
+	
+<div id="retroclockbox_lg" class="clock_box"></div>
 
-    <script type="text/javascript">
-      "use strict";
+<script>
+jQuery(function($){
+	$('#retroclockbox_lg').flipcountdown({size:'lg'});
+})
+</script>
 
-      var textElem = document.getElementById("clocktext");
-      var targetWidth = 0.9; // Proportion of full screen width
-      var curFontSize = 15; // Do not change
+<footer>
+</footer>
+<style>
+body{margin:0px; padding:0px;}
+#main{margin:0px auto; padding:0px; width:900px;position:relative;}
+pre{
+	background:#F7F7F9;padding:10px;
+	border: 1px solid #E1E1E8;
+	border-radius: 3px;
+	color: #222222;
+}
+#langbox{
+	position:absolute;
+	top:10px;
+	right:10px;
+}
+#main{
+	background-color: rgba(1,1,1,0.5);
+	height: 100vh;
+	text-align: center;
+	
+	
+}
+.clock_box{
+	padding-top: 50vh;
+	
 
-      function updateClock() {
-        var d = new Date();
-        var s = "";
-        s += (10 > d.getHours() ? "0" : "") + d.getHours() + ":";
-        s += (10 > d.getMinutes() ? "0" : "") + d.getMinutes() + ":";
-        s += (10 > d.getSeconds() ? "0" : "") + d.getSeconds();
-        textElem.textContent = s;
-        setTimeout(updateClock, 1000 - (d.getTime() % 1000) + 20);
-      }
-
-      function updateTextSize() {
-        for (var i = 0; 3 > i; i++) {
-          // Iterate for better better convergence
-          curFontSize *=
-            targetWidth /
-            (textElem.offsetWidth / textElem.parentNode.offsetWidth);
-          textElem.style.fontSize = curFontSize + "pt";
-        }
-      }
-
-      updateClock();
-      updateTextSize();
-      window.addEventListener("resize", updateTextSize);
-    </script>
-  </body>
+}
+</style>
+</div>
+</body>
 </html>
